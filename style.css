@@ -1,43 +1,30 @@
-:root{
-    --cor-fundo: #01080E ;
-    --cor-principal: #0B0D20 ;
-    --cor-secundaria: #212333; 
-    --cor-destaque: #2BDEFD;
-    --cor-texto: #D7F9FF;
-
-}
-
 body {
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    font-family: Arial, sans-serif;
 }
 
-.caixa-principal{
-    background-color: var(--cor-principal);
-    width: 90%;
-    max-width: 600px;
+.caixa-principal {
+    max-width: 800px;
+    margin: 0 auto;
     text-align: center;
-    padding: 20px;
 }
 
-h1{
-    color: var(--cor-destaque);
+.caixa-perguntas {
+    margin-bottom: 20px;
 }
 
-button {
-    background-color: var(--cor-secundaria);
-    color: var(--cor-texto);
-    border: none;
-    border-radius: 15px;
-    padding: 15px;
-    transition: background-color 0.3s;
+.caixa-alternativas button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-button:hover{
-    background-color: var(--cor-destaque);
-    color: var(--cor-principal);
+.caixa-resultado {
+    margin-top: 20px;
+}
+
+.texto-resultado {
+    font-size: 18px;
+    font-weight: bold;
 }
