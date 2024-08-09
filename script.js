@@ -1,62 +1,42 @@
-// Seleciona os botões e os conteúdos das abas relacionados à inteligência artificial
-const botoesIA = document.querySelectorAll(".botao-ia");
-const textosIA = document.querySelectorAll(".aba-conteudo-ia");
+const caixaPerguntas = document.querySelector(".caixa-perguntas");
+const caixaAlternativas = document.querySelector(".caixa-alternativas");
+const caixaResultado = document.querySelector(".caixa-resultado");
+const textoResultado = document.querySelector(".texto-resultado");
 
-// Adiciona a funcionalidade de troca de abas com base no tema IA
-for (let i = 0; i < botoesIA.length; i++) {
-    botoesIA[i].onclick = function () {
-        for (let j = 0; j < botoesIA.length; j++) {
-            botoesIA[j].classList.remove("ativo");
-            textosIA[j].classList.remove("ativo");
-        }
-
-        botoesIA[i].classList.add("ativo");
-        textosIA[i].classList.add("ativo");
-    }
-}
-
-// Seleciona os contadores e define datas importantes relacionadas à IA
-const contadoresIA = document.querySelectorAll(".contador-ia");
-const tempoObjetivoIA1 = new Date("2024-01-01T00:00:00"); // Data para um avanço significativo em IA
-const tempoObjetivoIA2 = new Date("2024-06-01T00:00:00"); // Data para um marco importante na IA
-const tempoObjetivoIA3 = new Date("2024-12-01T00:00:00"); // Data para um evento internacional sobre IA
-const tempoObjetivoIA4 = new Date("2025-01-01T00:00:00"); // Data para uma nova tecnologia IA revolucionária
-
-const temposIA = [tempoObjetivoIA1, tempoObjetivoIA2, tempoObjetivoIA3, tempoObjetivoIA4];
-
-// Calcula o tempo restante para cada objetivo relacionado à IA
-function calculaTempoIA(tempoObjetivo) {
-    let tempoAtual = new Date();
-    let tempoFinal = tempoObjetivo - tempoAtual;
-    let segundos = Math.floor(tempoFinal / 1000);
-    let minutos = Math.floor(segundos / 60);
-    let horas = Math.floor(minutos / 60);
-    let dias = Math.floor(horas / 24);
-
-    segundos %= 60;
-    minutos %= 60;
-    horas %= 24;
-    if (tempoFinal > 0) {
-        return [dias, horas, minutos, segundos];
-    } else {
-        return [0, 0, 0, 0];
-    }
-}
-
-// Atualiza o cronômetro para refletir o tempo restante até os objetivos de IA
-function atualizaCronometroIA() {
-    for (let i = 0; i < contadoresIA.length; i++) {
-        document.getElementById("diasIA" + i).textContent = calculaTempoIA(temposIA[i])[0];
-        document.getElementById("horasIA" + i).textContent = calculaTempoIA(temposIA[i])[1];
-        document.getElementById("minIA" + i).textContent = calculaTempoIA(temposIA[i])[2];
-        document.getElementById("segIA" + i).textContent = calculaTempoIA(temposIA[i])[3];
-    }
-}
-
-// Inicia o cronômetro para os eventos de IA
-function comecaCronometroIA() {
-    atualizaCronometroIA();
-    setInterval(atualizaCronometroIA, 1000);
-}
-
-comecaCronometroIA();
+const perguntas = [
+    {
+        enunciado: "Você descobre uma nova tecnologia de IA aplicada na medicina que pode prever doenças com base em dados genéticos. Qual é a sua reação inicial?",
+        alternativas: [
+            {
+                texto: "Isso é preocupante!",
+                afirmacao: "Você se preocupa com a privacidade e o potencial uso indevido dos dados genéticos."
+            },
+            {
+                texto: "Isso é incrível!",
+                afirmacao: "Você fica empolgado com as possibilidades de diagnósticos mais precisos e tratamentos personalizados."
+            }
+        ]
+    },
+    {
+        enunciado: "Um hospital implementou um sistema de IA para monitorar pacientes em tempo real. Qual seria sua opinião sobre isso?",
+        alternativas: [
+            {
+                texto: "Acho que é uma grande melhoria, pois pode oferecer cuidados mais rápidos e precisos.",
+                afirmacao: "Você acredita que a IA pode melhorar significativamente o atendimento ao paciente e a eficiência hospitalar."
+            },
+            {
+                texto: "Estou preocupado com o fato de que isso possa reduzir o contato humano e afetar a qualidade do atendimento.",
+                afirmacao: "Sua preocupação leva você a se engajar em discussões sobre como equilibrar a tecnologia com o cuidado humano."
+            }
+        ]
+    },
+    {
+        enunciado: "Em uma aula sobre IA na medicina, você deve apresentar um trabalho sobre as implicações éticas do uso de IA na saúde. Como você procede?",
+        alternativas: [
+            {
+                texto: "Pesquiso sobre as implicações éticas e escrevo um trabalho detalhado utilizando ferramentas de IA para obter dados relevantes.",
+                afirmacao: "Você utilizou a IA para obter uma visão aprofundada e criar um trabalho bem fundamentado sobre ética na saúde."
+            },
+            {
+                texto: "Baseio meu trabalho em discussões com colegas e pesquisas tradicionais, sem usar ferramentas de IA diretamente.",
+                afirmacao: "Você prefere um enfoque m
