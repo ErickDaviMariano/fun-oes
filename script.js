@@ -1,30 +1,80 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const pilotos = [
-        { nome: "Lewis Hamilton", equipe: "Mercedes" },
-        { nome: "Max Verstappen", equipe: "Red Bull Racing" },
-        { nome: "Charles Leclerc", equipe: "Ferrari" }
-    ];
+const caixaPrincipal = document.querySelector(".caixa-principal");
+const caixaPerguntas = document.querySelector(".perguntas");
+const caixaAlternativas = document.querySelector(".caixa-alternativas");
+const caixaResultado = document.querySelector(".caixa-resultado");
+const textoResultado = document.querySelector(".texto-resultado");
 
-    const equipes = [
-        { nome: "Mercedes", pais: "Alemanha" },
-        { nome: "Red Bull Racing", pais: "Áustria" },
-        { nome: "Ferrari", pais: "Itália" }
-    ];
+const perguntas = [
+    {
+        enunciado: "Qual piloto tem o maior número de campeonatos mundiais na Fórmula 1?",
+        alternativas: [
+            "Lewis Hamilton",
+            "Michael Schumacher",
+            "Juan Manuel Fangio"
+        ]
+    },
+    {
+        enunciado: "Qual equipe tem o maior número de títulos de construtores?",
+        alternativas: [
+            "Mercedes",
+            "Ferrari",
+            "Red Bull Racing"
+        ]
+    },
+    {
+        enunciado: "Em qual circuito se realiza o Grande Prêmio de Mônaco?",
+        alternativas: [
+            "Circuito de Spa-Francorchamps",
+            "Circuito de Silverstone",
+            "Circuito de Monte Carlo"
+        ]
+    },
+    {
+        enunciado: "Qual é o nome do sistema de recuperação de energia utilizado pela Fórmula 1 desde 2009?",
+        alternativas: [
+            "KERS",
+            "DRS",
+            "ERS"
+        ]
+    },
+    {
+        enunciado: "Quem foi o campeão da temporada de Fórmula 1 de 2021?",
+        alternativas: [
+            "Max Verstappen",
+            "Lewis Hamilton",
+            "Charles Leclerc"
+        ]
+    }
+];
 
-    const listaPilotos = document.getElementById("lista-pilotos");
-    const listaEquipes = document.getElementById("lista-equipes");
+let atual = 0;
+let respostas = [];
 
-    pilotos.forEach(piloto => {
-        const div = document.createElement("div");
-        div.classList.add("card");
-        div.innerHTML = `<h3>${piloto.nome}</h3><p>Equipe: ${piloto.equipe}</p>`;
-        listaPilotos.appendChild(div);
+function mostraPergunta() {
+    const perguntaAtual = perguntas[atual];
+    caixaPerguntas.textContent = perguntaAtual.enunciado;
+    caixaAlternativas.innerHTML = '';
+
+    perguntaAtual.alternativas.forEach((alternativa, index) => {
+        const botaoAlternativa = document.createElement("button");
+        botaoAlternativa.textContent = alternativa;
+        botaoAlternativa.addEventListener("click", () => selecionarResposta(index));
+        caixaAlternativas.appendChild(botaoAlternativa);
     });
 
-    equipes.forEach(equipe => {
-        const div = document.createElement("div");
-        div.classList.add("card");
-        div.innerHTML = `<h3>${equipe.nome}</h3><p>País: ${equipe.pais}</p>`;
-        listaEquipes.appendChild(div);
-    });
-});
+    atualizarNavegacao();
+}
+
+function selecionarResposta(index) {
+    respostas[atual] = index; // Armazena a resposta selecionada
+    if (atual < perguntas.length - 1) {
+        atual++;
+        mostraPergunta();
+    } else {
+        mostraResultado();
+    }
+}
+
+function atualizarNavegacao() {
+    document.getElementById("btn-anterior").style.display = atual === 0 ? 'none' : 'inline';
+    document.getElementById("btn-proximo").
